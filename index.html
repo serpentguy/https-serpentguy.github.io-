@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Amazing Mom ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* Soft, cute pastel gradient background */
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 71, 126, 0.2);
+            backdrop-filter: blur(8px);
+            max-width: 85%;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Big Beating Heart */
+        .heart {
+            font-size: 5.5rem;
+            animation: beat 1.2s infinite;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* Main Animated Text Container */
+        .animated-text {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 15px 0;
+        }
+
+        /* Individual Animated Letters */
+        .letter {
+            display: inline-block;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            animation: wave 2s infinite ease-in-out, colorShift 4s infinite linear;
+        }
+
+        /* Best Mom Ever Text with Glow Animation */
+        .subtext {
+            color: #ff477e;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            animation: glow 2s infinite ease-in-out;
+        }
+
+        /* "By Mihir" Signature Text */
+        .signature {
+            color: #ff758f;
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: floatName 3s infinite ease-in-out;
+            display: block;
+        }
+
+        /* Floating Background Emojis */
+        .floating-emoji {
+            position: absolute;
+            bottom: -50px;
+            animation: floatUp 4s linear infinite;
+            pointer-events: none;
+        }
+
+        /* --- Animations --- */
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Text Wave/Ripple Effect */
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Text Rainbow Color Shift */
+        @keyframes colorShift {
+            0% { color: #ff477e; text-shadow: 0 0 10px rgba(255,71,126,0.3); }
+            33% { color: #ff758f; text-shadow: 0 0 10px rgba(255,117,143,0.3); }
+            66% { color: #ff0a54; text-shadow: 0 0 10px rgba(255,10,84,0.3); }
+            100% { color: #ff477e; text-shadow: 0 0 10px rgba(255,71,126,0.3); }
+        }
+
+        /* Soft Text Glow Effect */
+        @keyframes glow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 8px rgba(255,117,143,0.6); }
+        }
+
+        /* Gentle Floating for Name */
+        @keyframes floatName {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); color: #ff0a54; }
+        }
+
+        /* Background Floating Items */
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart">💝</div>
+        
+        <!-- Main wave text loaded by JavaScript -->
+        <div class="animated-text" id="textTarget"></div>
+        
+        <!-- Custom subtext added below -->
+        <div class="subtext">My best mom ever in the whole world ✨🌸👩‍👦</div>
+        
+        <!-- Your custom signature -->
+        <span class="signature">💖 By Mihir 💖</span>
+    </div>
+
+    <script>
+        // Main love message text
+        const message = "I love you so much my mom! ❤️";
+        const container = document.getElementById('textTarget');
+
+        // Split text into letters to create the wave animation
+        message.split("").forEach((char, index) => {
+            const span = document.createElement('span');
+            if (char === " ") {
+                span.innerHTML = "&nbsp;";
+            } else {
+                span.innerText = char;
+            }
+            span.classList.add('letter');
+            span.style.animationDelay = `${index * 0.1}s`;
+            container.appendChild(span);
+        });
+
+        // Floating background emojis
+        const emojis = ['❤️', '✨', '🌸', '👑', '💖', '🌹', '🥰', '💝'];
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('floating-emoji');
+            emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+            emoji.style.animationDuration = Math.random() * 2 + 3 + 's';
+            
+            document.body.appendChild(emoji);
+
+            setTimeout(() => { emoji.remove(); }, 5000);
+        }
+
+        // Set speed of background emojis
+        setInterval(createEmoji, 400);
+    </script>
+
+</body>
+</html>
